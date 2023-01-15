@@ -1,5 +1,7 @@
 <?php
 
+require_once 'enums/SkillsEnum.php';
+
 class Battle {
     protected $hero;
     protected $wildBeast;
@@ -25,16 +27,15 @@ class Battle {
             echo "\n\n Turn " . $this->turns . "\n";
 
             if ($this->isHeroFirst) {
-                $this->hero->useSkills($this->wildBeast);
+                $this->hero->useSkills($this->wildBeast, SkillsEnum::RapidStrike);
                 $this->hero->attack($this->wildBeast);
                 if($this->wildBeast->getHealth() > 0) {
-                    $this->wildBeast->useSkills($this->hero);
                     $this->wildBeast->defend();
                 }
             } else {
                 $this->wildBeast->attack($this->hero);
                 if ($this->hero->getHealth() > 0) {
-                    $this->hero->useSkills($this->wildBeast);
+                    $this->hero->useSkills($this->wildBeast, SkillsEnum::MagicShield);
                     $this->hero->defend();
                 }
             }

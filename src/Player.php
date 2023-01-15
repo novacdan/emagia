@@ -17,7 +17,7 @@ abstract class Player {
         $this->luck = $luck;
     }
     
-    abstract public function useSkills($defender);
+    abstract public function useSkills($defender, $skill);
 
     public function attack($defender) {
          //If the defense is greater than the attack power, the damage will be 0
