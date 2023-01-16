@@ -1,5 +1,7 @@
 <?php
 
+require_once 'enums/StatEnum.php';
+
 abstract class Player {
     protected $name;
     protected $health;
@@ -23,9 +25,12 @@ abstract class Player {
          //If the defense is greater than the attack power, the damage will be 0
         $damage = max(0, $this->getStrength() - $defender->getDefence());
 
-        if(rand(0,100) > $defender->getLuck())
-            $defender->setHealth($defender->getHealth() - $damage);
-        echo "\033[0;33m " . $this->getName() . " attacked " . $defender->getName() ." (HP: " . $defender->getHealth() .")\033[0m\n";
+        if(rand(0,100) > $defender->getLuck()) {
+         $defender->setHealth($defender->getHealth() - $damage);
+        } 
+        
+        echo "\033[0;33m " . $this->getName() . " does " . $damage . " damage to " . $defender->getName() ." (HP: " . $defender->getHealth() .")\033[0m\n";
+
     }
 
     public function defend() {
@@ -59,4 +64,26 @@ abstract class Player {
     public function getLuck() {
         return $this->luck;
     }
+
+    // public function resetStat($stat) {
+        // $factory = new Factory();
+
+        // switch ($stat) {
+        //     case StatEnum::Strength:
+        //         $this->strength = $factory->generateStrength($config);
+        //         break;
+        //     case StatEnum::Defence:
+        //         $this->defence = $factory->generateDefence($config);
+        //         break;
+        //     case StatEnum::Speed:
+        //         $this->speed = $factory->generateSpeed($config);
+        //         break;
+        //     case StatEnum::Luck:
+        //         $this->luck = $factory->generateLuck($config);
+        //         break;
+        //     default:
+        //         echo "Invalid statistic to reset (". $this->getName() .").";
+        // }
+    // }
+
 }

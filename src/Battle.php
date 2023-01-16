@@ -29,13 +29,16 @@ class Battle {
             if ($this->isHeroFirst) {
                 $this->hero->useSkills($this->wildBeast, SkillsEnum::RapidStrike);
                 $this->hero->attack($this->wildBeast);
-                if($this->wildBeast->getHealth() > 0) {
+                if($this->wildBeast->getDefence() > $this->hero->getStrength()) {
                     $this->wildBeast->defend();
                 }
             } else {
                 $this->wildBeast->attack($this->hero);
                 if ($this->hero->getHealth() > 0) {
                     $this->hero->useSkills($this->wildBeast, SkillsEnum::MagicShield);
+                }
+
+                if ($this->hero->getDefence() > $this->wildBeast->getStrength()) {
                     $this->hero->defend();
                 }
             }
@@ -47,6 +50,7 @@ class Battle {
             echo "\n Wild Beast wins!\n";
         }
     }
+    
 
     private function isHeroFirst() {
         if ($this->hero->getSpeed() > $this->wildBeast->getSpeed()) {

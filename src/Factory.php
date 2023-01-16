@@ -4,37 +4,50 @@ class Factory
 {
     public function createHero($config)
     {
-        $entityHealth = rand($config['health']['min'], $config['health']['max']);
-        $entityStrength = rand($config['strength']['min'], $config['strength']['max']);
-        $entityDefence = rand($config['defence']['min'], $config['defence']['max']);
-        $entitySpeed = rand($config['speed']['min'], $config['speed']['max']);
-        $entityLuck = rand($config['luck']['min'], $config['luck']['max']);
-
         return new Hero(
             $config['name'], 
-            $entityHealth, 
-            $entityStrength,
-            $entityDefence, 
-            $entitySpeed, 
-            $entityLuck 
+            $this->generateHealth($config), 
+            $this->generateStrength($config),
+            $this->generateDefence($config), 
+            $this->generateSpeed($config), 
+            $this->generateLuck($config) 
         );
     }
 
     public function createWildBeast($config)
     {
-        $entityHealth = rand($config['health']['min'], $config['health']['max']);
-        $entityStrength = rand($config['strength']['min'], $config['strength']['max']);
-        $entityDefence = rand($config['defence']['min'], $config['defence']['max']);
-        $entitySpeed = rand($config['speed']['min'], $config['speed']['max']);
-        $entityLuck = rand($config['luck']['min'], $config['luck']['max']);
-
         return new WildBeast(
             $config['name'], 
-            $entityHealth, 
-            $entityStrength,
-            $entityDefence, 
-            $entitySpeed, 
-            $entityLuck 
+            $this->generateHealth($config), 
+            $this->generateStrength($config),
+            $this->generateDefence($config), 
+            $this->generateSpeed($config), 
+            $this->generateLuck($config) 
         );
+    }
+
+    public function generateHealth($config)
+    {
+        return rand($config['health']['min'], $config['health']['max']);
+    }
+
+    public function generateStrength($config)
+    {
+        return rand($config['strength']['min'], $config['strength']['max']);
+    }
+
+    public function generateDefence($config)
+    {
+        return rand($config['defence']['min'], $config['defence']['max']);
+    }
+
+    public function generateSpeed($config)
+    {
+        return rand($config['speed']['min'], $config['speed']['max']);
+    }
+
+    public function generateLuck($config)
+    {
+        return rand($config['luck']['min'], $config['luck']['max']);
     }
 }
